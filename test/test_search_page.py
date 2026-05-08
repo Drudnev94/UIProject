@@ -1,7 +1,15 @@
-from playwright.async_api import async_playwright
-from UIProject.test.conftest import header
-from UIProject.pages.header import HeaderPage
-class TestSearchPage():
+"""Tests for the search page functionality."""
 
-    def test_search_page(self,header):
-         header.search("Электронный журнал. ВИП-версия 'Главбух' 12 мес.")
+from pages.header import HeaderPage
+
+
+class TestSearchPage:
+    """Test cases for search functionality."""
+
+    def test_search_page(self, header: HeaderPage) -> None:
+        """Test that search works with a specific query.
+        
+        Args:
+            header: HeaderPage fixture
+        """
+        header.search("Электронный журнал. ВИП-версия 'Главбух' 12 мес.")
