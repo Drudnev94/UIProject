@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Page, sync_playwright
 
-from pages.header import HeaderPage
+from pages.home_page import HomePage
 from pages.main_page import MainPage
 
 
@@ -65,7 +65,7 @@ def header(page):
     Returns:
         HeaderPage instance
     """
-    return HeaderPage(page)
+    return HomePage(page)
 
 
 @pytest.fixture(scope="module")

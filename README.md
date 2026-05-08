@@ -43,8 +43,10 @@ pytest test/
 The project uses the Page Object Model (POM) design pattern for maintainable UI tests.
 
 Example test:
+
 ```python
-from pages.header import HeaderPage
+from pages.home_page import HeaderPage
+
 
 def test_search(header: HeaderPage):
     header.search("search query")
