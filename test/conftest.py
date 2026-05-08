@@ -1,42 +1,82 @@
 import pytest
-from playwright.async_api import Page
-from playwright.sync_api import Playwright, sync_playwright
-from UIProject.pages.header import HeaderPage
-from UIProject.pages.main_pag import MainPage
+from playwright.sync_api import Page, sync_playwright
+
+from pages.header import HeaderPage
+from pages.main_page import MainPage
 
 
 @pytest.fixture(scope="module")
 def playwright_instance():
+    """Create a Playwright instance."""
     with sync_playwright() as p:
         yield p
 
+
 @pytest.fixture(scope="module")
-def browser(playwright_instance, request):
-    """Создает браузер, каждый раз новый"""
-    browser = playwright_instance.chromium.launch(headless=False,slow_mo=500)
-    # browser = playwright_instance.chromium.launch()
+def browser(playwright_instance):
+    """Create a new browser instance.
+    
+    Args:
+        playwright_instance: Playwright instance
+        
+    Yields:
+        Browser instance
+    """
+    browser = playwright_instance.chromium.launch(headless=False, slow_mo=500)
     yield browser
     browser.close()
 
+
 @pytest.fixture(scope="module")
 def context(browser):
-    """Создает контент в браузере, каждый раз новый"""
+    """Create a new browser context.
+    
+    Args:
+        browser: Browser instance
+        
+    Yields:
+        Browser context
+    """
     context = browser.new_context()
     yield context
     context.close()
 
+
 @pytest.fixture(scope="module")
 def page(context) -> Page:
-    """Создает новую вкладку в контексте, принимает  контекст возвращает page"""
-    page: Page = context.new_page()
-    return page
+    """Create a new page in the context.
+    
+    Args:
+        context: Browser context
+        
+    Returns:
+        Page instance
+    """
+    return context.new_page()
+
 
 @pytest.fixture(scope="module")
 def header(page):
-    """Возврашаем класс HeaderPage"""
+    """Create a HeaderPage instance.
+    
+    Args:
+        page: Page instance
+        
+    Returns:
+        HeaderPage instance
+    """
     return HeaderPage(page)
 
+
 @pytest.fixture(scope="module")
-def mai_npage(page):
+def main_page(page):
+    """Create a MainPage instance.
+    
+    Args:
+        page: Page instance
+        
+    Returns:
+        MainPage instance
+    """
     return MainPage(page)
 

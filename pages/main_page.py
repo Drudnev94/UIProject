@@ -1,11 +1,14 @@
-from UIProject.pages.base_page import BasePage
+"""Main page object for the homepage."""
+
+from .base_page import BasePage
 
 
 class MainPage(BasePage):
+    """Page object for the main homepage."""
+
     page_url = BasePage.BASE_URL
 
-    # селекторы
-    """Header"""
+    # Header selectors
     _logo = "[alt='Актион-пресс']"
     _registration_button = "[dataqa= 'SSOAuthButton']"
     _cart_counter = "[data-qa-locator = 'basketCount']"
@@ -18,15 +21,17 @@ class MainPage(BasePage):
     _contacts = "//span[text() = 'Контакты']"
     _payment_method = "//span[text() = 'Способы оплаты']"
     _delivery_methods = "//span[text() = 'Способы доставки']"
-    _search_input_selector = "//*[@placeholder='Поиск']"  # .nth(1)
+    _search_input_selector = "//*[@placeholder='Поиск']"
     _banner = ".img-fluid"
-    """Section"""
+
+    # Section selectors
     _title_text_selector = "//div[text()='Рекомендованные издания']"
     _title_catalog_selector = "//span[text() = 'Каталог']"
     _link = "//a[text()='Печатные и электронные издания']"
     _news = "//span[text()='Новости']"
     _advantages = "//span[text()='Наши преимущества']"
-    """Плитка"""
+
+    # Product link selectors
     _glavbux = "//a[text()='Главбух']"
     _uprashenka = "//a[text()='Упрощёнка']"
     _kadrovoe_delo = "//a[text()='Кадровое дело']"
@@ -37,7 +42,7 @@ class MainPage(BasePage):
     _fin_dir = "//a[text()='Финансовый директор']"
     _ros_nalog_kurer = "//a[text()='Российский налоговый курьер']"
 
-    # Банеры перед подвалом подвале
+    # Banner selectors
     _glavbux_baner = "[src='https://fb.action-press.ru/docs/ecm/images/glavbuh.png']"
     _gen_dir_baner = "[src='https://fb.action-press.ru/docs/ecm/images/genDir.png']"
     _zarplata_baner = "[src='https://fb.action-press.ru/docs/ecm/images/zarp.png']"
@@ -57,8 +62,7 @@ class MainPage(BasePage):
     _fin_dir_baner = "[src='https://fb.action-press.ru/docs/ecm/images/finDir.png']"
     _trud_spor = "[src='https://fb.action-press.ru/docs/ecm/images/trudSpor.png']"
 
-    """Footer"""
-
+    # Footer selectors
     _logo2 = "[alt='Action logo']"
     _logo3 = "//div[text()='Официальный интернет-магазин группы Актион']"
     _column1 = "[data-qa-locator='column1']"
@@ -67,8 +71,8 @@ class MainPage(BasePage):
     _column4 = "//h5[text()= 'Свяжитесь' ]"
     _column5 = "//a[text()='Электронные ']"
 
-    _label_data = ".footer-copyright"  # nth(0)
-    _label_data1 = ".footer-copyright"  # nth(1)
+    _label_data = ".footer-copyright"
+    _label_data1 = ".footer-copyright"
 
     _footer_payment_method1 = (
         "[src='https://fb.action-press.ru/docs/ecm/images/visa.png']"
@@ -82,8 +86,7 @@ class MainPage(BasePage):
     _button_up = "//button[text() = 'ВВЕРХ ']"
     _bot_chat = "hoverArea__bKo37"
 
-    # Локаторы
-
+    # Header locators
     def logo_locator(self):
         return self.element(self._logo)
 
@@ -126,6 +129,7 @@ class MainPage(BasePage):
     def banner_locator(self):
         return self.element(self._banner)
 
+    # Section locators
     def title_text_selector_locator(self):
         return self.element(self._title_text_selector)
 
@@ -141,6 +145,7 @@ class MainPage(BasePage):
     def advantages_locator(self):
         return self.element(self._advantages)
 
+    # Product locators
     def glavbux_locator(self):
         return self.element(self._glavbux)
 
@@ -168,6 +173,7 @@ class MainPage(BasePage):
     def ros_nalog_kurer_locator(self):
         return self.element(self._ros_nalog_kurer)
 
+    # Banner locators
     def glavbux_baner_locator(self):
         return self.element(self._glavbux_baner)
 
@@ -181,7 +187,7 @@ class MainPage(BasePage):
         return self.element(self._uprashenka_baner)
 
     def ros_nalog_kurer_baner_locator(self):
-        return self.element(self._ros_nalog_kurer)
+        return self.element(self._ros_nalog_kurer_baner)
 
     def ushet_nalogi_baner_locator(self):
         return self.element(self._ushet_nalogi_baner)
@@ -192,16 +198,17 @@ class MainPage(BasePage):
     def urist_kompani_baner_locator(self):
         return self.element(self._urist_kompani_baner)
 
-    def fin_dir_baner(self):
-        return self.element(self._fin_dir)
+    def fin_dir_baner_locator(self):
+        return self.element(self._fin_dir_baner)
 
     def trud_spor_locator(self):
         return self.element(self._trud_spor)
 
+    # Footer locators
     def logo2_locator(self):
         return self.element(self._logo2)
 
-    def column1ogo3_locator(self):
+    def column1_locator(self):
         return self.element(self._column1)
 
     def column2_locator(self):
