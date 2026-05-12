@@ -1,8 +1,13 @@
 from .base_page import BasePage
 
 class MagazinePage(BasePage):
+
+    #Selectors
+    _subscription_options = "//th[text()='Варианты подписки']"
+
     #Locators
 
-    def chief_accountant(self):
-        return self.page.get_by_text("Главбух")
+    def subscription_options(self):
+        return self.element(self._subscription_options)
+
 

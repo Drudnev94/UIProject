@@ -23,7 +23,7 @@ class HomePage(BasePage):
     def search_button_selector(self):
         return self.element(self._search_button_selector).nth(0)
 
-    def search_megazin(self, text: str):
+    def search_megazin(self, text: str)-> 'SearchResultPage':
         """Поиск через строку поиска"""
         self.search_locator().click()
         self.search_input_selector().fill(text)
@@ -31,5 +31,6 @@ class HomePage(BasePage):
         """Ожидание новой страницы"""
         new_page = self.page.context.wait_for_event("page", timeout=5000)
         self.page = new_page
-        expect(chief_accountant).to_be_visible()
+        return SearchResultPage(new_page)
+
 
