@@ -23,14 +23,16 @@ class HomePage(BasePage):
     def search_button_selector(self):
         return self.element(self._search_button_selector).nth(0)
 
-    def search_megazin(self, text: str)-> 'SearchResultPage':
+    def search_megazin(self, text: str):
         """Поиск через строку поиска"""
         self.search_locator().click()
         self.search_input_selector().fill(text)
         self.search_button_selector().click()
         """Ожидание новой страницы"""
-        new_page = self.page.context.wait_for_event("page", timeout=5000)
-        self.page = new_page
-        return SearchResultPage(new_page)
+        new_page =self.page.wait_for_selector(".l-ss-c-results", timeout=5000)
+        print(f"After search URL: {self.page.url}")
+        self.page.screenshot(path="after_search.png")
+        from pages.magazine_page import MagazinePage
+        return MagazinePage(self.page)
 
 
