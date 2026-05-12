@@ -3,6 +3,7 @@ from playwright.sync_api import Page, sync_playwright
 
 from pages.home_page import HomePage
 from pages.main_page import MainPage
+from  pages.magazine_page import MagazinePage
 
 
 @pytest.fixture(scope="module")
@@ -47,6 +48,10 @@ def home_page(page):
 @pytest.fixture(scope="module")
 def main_page(page):
     return MainPage(page)
+
+@pytest.fixture(scope="module")
+def magazine_page(page):
+    return MagazinePage(page)
 
 @pytest.fixture(scope="module")
 def search(home_page):

@@ -1,6 +1,7 @@
 from playwright.sync_api import expect
 
-from .base_page import BasePage
+from pages.base_page import BasePage
+from pages.magazine_page import MagazinePage
 
 
 class HomePage(BasePage):
@@ -27,5 +28,8 @@ class HomePage(BasePage):
         self.search_locator().click()
         self.search_input_selector().fill(text)
         self.search_button_selector().click()
-
+        """Ожидание новой страницы"""
+        new_page = self.page.context.wait_for_event("page", timeout=5000)
+        self.page = new_page
+        expect(chief_accountant).to_be_visible()
 

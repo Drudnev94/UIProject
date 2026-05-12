@@ -1,5 +1,5 @@
 """Tests for the search page functionality."""
-
+from playwright.sync_api import expect
 
 
 class TestSearchPage:
@@ -7,3 +7,5 @@ class TestSearchPage:
 
     def test_search_page(self,home_page,search):
         home_page.search_megazin('Электронный журнал. ВИП-версия "Главбух" 12 мес.')
+
+
