@@ -22,21 +22,13 @@ def browser(playwright_instance):
     Yields:
         Browser instance
     """
-    browser = playwright_instance.chromium.launch(headless=False, slow_mo=500)
+    browser = playwright_instance.chromium.launch(headless=False, slow_mo=800)
     yield browser
     browser.close()
 
 
 @pytest.fixture(scope="module")
 def context(browser):
-    """Create a new browser context.
-    
-    Args:
-        browser: Browser instance
-        
-    Yields:
-        Browser context
-    """
     context = browser.new_context()
     yield context
     context.close()
@@ -44,39 +36,18 @@ def context(browser):
 
 @pytest.fixture(scope="module")
 def page(context) -> Page:
-    """Create a new page in the context.
-    
-    Args:
-        context: Browser context
-        
-    Returns:
-        Page instance
-    """
     return context.new_page()
 
 
 @pytest.fixture(scope="module")
-def header(page):
-    """Create a HeaderPage instance.
-    
-    Args:
-        page: Page instance
-        
-    Returns:
-        HeaderPage instance
-    """
+def home_page(page):
     return HomePage(page)
 
 
 @pytest.fixture(scope="module")
 def main_page(page):
-    """Create a MainPage instance.
-    
-    Args:
-        page: Page instance
-        
-    Returns:
-        MainPage instance
-    """
     return MainPage(page)
 
+@pytest.fixture(scope="module")
+def search(home_page):
+    return home_page.open_page()
