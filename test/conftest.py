@@ -4,6 +4,8 @@ from playwright.sync_api import Page, sync_playwright
 from pages.home_page import HomePage
 from pages.main_page import MainPage
 from pages.magazine_page import MagazinePage
+from pages.about_page import AboutPage
+
 
 
 @pytest.fixture(scope="module")
@@ -53,6 +55,9 @@ def magazine_page(page):
     """Возвращаем класс MagazinePage"""
     return MagazinePage(page)
 
+@pytest.fixture(scope="module")
+def about_page(page):
+    return AboutPage(page)
 
 @pytest.fixture(scope="module")
 def search(home_page):

@@ -4,6 +4,7 @@ from .base_page import BasePage
 class MagazinePage(BasePage):
     page_url = "product/glavbukh/"
     target_title = 'Журнал "Главбух" | подписка онлайн'
+    target_url = f"{BasePage.BASE_URL}{page_url}"
 
     """Селекторы"""
 
