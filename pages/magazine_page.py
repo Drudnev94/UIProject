@@ -1,13 +1,15 @@
 from .base_page import BasePage
 
+
 class MagazinePage(BasePage):
     page_url = "product/glavbukh/"
     target_title = 'Журнал "Главбух" | подписка онлайн'
 
-    #Selectors
+    """Селекторы"""
+
     _page_section = "//a[text()='Журнал \"Главбух\"']"
     _nv_bar_fix_top = "//*[contains(@class, 'navbar fixed-top')]"
-    _header_banner = "//*[contains(@class, 'img-fluid')]" #nth(0)
+    _header_banner = "//*[contains(@class, 'img-fluid')]"  # nth(0)
     _nv_bar = " //*[contains(@class, 'navbar navbar-expand-lg navbar-sub-heade')] "
     _subscription_options = "//th[text()='Варианты подписки']"
     _subscription_for_6_months = "//th[text()='6 месяцев']"
@@ -31,14 +33,16 @@ class MagazinePage(BasePage):
     _description2_paragraph3 = "//h3[contains(., 'чиновников')]"
     _description2_paragraph4 = "//h3[contains(., 'памятки')]"
     _description2_paragraph5 = "//h3[contains(., 'Пожизненный')]"
-    _review_block = " //*[contains(@class, 'col-sm-12 col-lg-9 offset-lg-3 p-4')] " #nth(0)
-    _might_like = " //*[contains(@class, 'col-sm-12 col-lg-9 offset-lg-3 p-4')] "  #nth(1)
+    _review_block = (
+        " //*[contains(@class, 'col-sm-12 col-lg-9 offset-lg-3 p-4')] "  # nth(0)
+    )
+    _might_like = (
+        " //*[contains(@class, 'col-sm-12 col-lg-9 offset-lg-3 p-4')] "  # nth(1)
+    )
     _additional_products = ".nav-pills"
     # _get_promo_code = "//*[contains(@class,'hoverArea__uCpXp')]"
 
-
-
-    #Locators
+    """Локаторы"""
 
     def subscription_options(self):
         return self.element(self._subscription_options)
@@ -50,7 +54,7 @@ class MagazinePage(BasePage):
         return self.element(self._magazine_picture)
 
     def add_to_basket(self):
-       return self.element(self._add_to_basket)
+        return self.element(self._add_to_basket)
 
     def page_section(self):
         return self.element(self._page_section)
@@ -123,20 +127,18 @@ class MagazinePage(BasePage):
 
     def might_like(self):
         return self.element(self._might_like).nth(1)
+
     def additional_products(self):
 
         return self.element(self._additional_products)
+
     def get_promo_code(self):
         return self.element(self._get_promo_code)
 
-
-
-
-
-
-    #Methods
+    """Методы"""
 
     def checking_the_store_page(self):
+        """Возвращает загруженную страницу в тест"""
         self.open_page()
         self.page.wait_for_load_state("domcontentloaded")
         return self

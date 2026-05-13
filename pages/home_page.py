@@ -5,13 +5,10 @@ from pages.base_page import BasePage
 from pages.magazine_page import MagazinePage
 
 
-
-
 class HomePage(BasePage):
-    """Page object for the header section of the website."""
 
-    # target_url = "https://action-press.ru/#/query=%" #содержит динамические переменные
-    target_title = 'Подписка на журналы Актион | Сайт Актион-пресс'
+    # target_url = "https://action-press.ru/#/query=%" #содержит динамические переменные не релевантная провепка
+    target_title = "Подписка на журналы Актион | Сайт Актион-пресс"
 
     # Selectors
     _search_selector = "input[placeholder='Поиск']"
@@ -34,5 +31,5 @@ class HomePage(BasePage):
         self.search_button_selector().click()
         """Ожидание новой страницы"""
         self.page.wait_for_load_state("domcontentloaded")
+        """Возврат загруженной страницы"""
         return MagazinePage(self.page)
-

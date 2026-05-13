@@ -2,38 +2,22 @@ from playwright.sync_api import Page
 
 
 class BasePage:
-    """Base page object providing common functionality for all pages."""
+    """Базовые методы"""
 
     BASE_URL = "https://action-press.ru/"
     page_url = ""
 
     def __init__(self, page: Page):
-        """Initialize base page with Playwright page instance.
-        
-        Args:
-            page: Playwright Page instance
-        """
         self.page = page
 
     def full_url(self) -> str:
-        """Construct the full URL for the page.
-        
-        Returns:
-            Complete URL string
-        """
+        """Формирует полный Url"""
         return f"{self.BASE_URL}{self.page_url}"
 
     def open_page(self) -> None:
-        """Navigate to the page's URL."""
+        """Открывает страницу с полным url"""
         self.page.goto(self.full_url())
 
     def element(self, selector: str):
-        """Get a locator for the given selector.
-        
-        Args:
-            selector: CSS or XPath selector string
-            
-        Returns:
-            Playwright Locator instance
-        """
+        """Оборачивает селектор  в локатор"""
         return self.page.locator(selector)
