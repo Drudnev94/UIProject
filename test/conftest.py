@@ -23,8 +23,8 @@ def browser(playwright_instance):
     Yields:
         Browser instance
     """
-    browser = playwright_instance.chromium.launch(headless=False, slow_mo=800)
-    # browser = playwright_instance.chromium.launch(headless=True)
+    # browser = playwright_instance.chromium.launch(headless=False, slow_mo=800)
+    browser = playwright_instance.chromium.launch(headless=True)
     yield browser
     browser.close()
 
