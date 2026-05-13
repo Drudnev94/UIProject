@@ -23,7 +23,8 @@ def browser(playwright_instance):
     Yields:
         Browser instance
     """
-    browser = playwright_instance.chromium.launch(headless=True, slow_mo=800)
+    browser = playwright_instance.chromium.launch(headless=False, slow_mo=800)
+    # browser = playwright_instance.chromium.launch(headless=True)
     yield browser
     browser.close()
 
@@ -56,3 +57,7 @@ def magazine_page(page):
 @pytest.fixture(scope="module")
 def search(home_page):
     return home_page.open_page()
+
+@pytest.fixture(scope="module")
+def checking_magazine(magazine_page):
+    return magazine_page.open_page()

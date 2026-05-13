@@ -1,12 +1,16 @@
 from .base_page import BasePage
 
 class MagazinePage(BasePage):
+    page_url = "product/glavbukh/"
+    CLOSE_BANNER = "[data-qa-locator= 'buttonCloseLastHope']"
+
 
     #Selectors
     _subscription_options = "//th[text()='Варианты подписки']"
     _chief_accountant = "[data-qa-locator='productName']"
-    _cover_magazine = "[data-qa-locator='coverMagazine']"
-    _add = "btn float-right im-add-to-cart-btn"
+    _magazine_picture = "[data-qa-locator='coverMagazine']"
+    _add_to_basket= ".im-add-to-cart-btn"
+    # _close_last_hope = "[data-qa-locator= 'buttonCloseLastHope']"
 
     #Locators
 
@@ -16,11 +20,14 @@ class MagazinePage(BasePage):
     def chief_accountant(self):
         return self.element(self._chief_accountant)
 
-    def cover_magazine(self):
-        return self.element(self._cover_magazine)
+    def magazine_picture(self):
+        return self.element(self._magazine_picture)
 
-    def add(self):
-        return self.element(self._add)
+    def add_to_basket(self):
+       return self.element(self._add_to_basket)
 
 
 
+    def checking_the_store_page(self,text: str):
+        self.page.open_page
+        return result_page.open_page()

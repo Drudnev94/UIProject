@@ -1,7 +1,10 @@
 from playwright.sync_api import expect
 
+from pages import magazine_page
 from pages.base_page import BasePage
 from pages.magazine_page import MagazinePage
+
+
 
 
 class HomePage(BasePage):
@@ -29,10 +32,15 @@ class HomePage(BasePage):
         self.search_input_selector().fill(text)
         self.search_button_selector().click()
         """Ожидание новой страницы"""
-        new_page =self.page.wait_for_selector(".l-ss-c-results", timeout=5000)
-        print(f"After search URL: {self.page.url}")
-        self.page.screenshot(path="after_search.png")
-        from pages.magazine_page import MagazinePage
+        self.page.wait_for_load_state("domcontentloaded")
+        # new_page = self.page
+
+        try:
+            self.page.wait_for_selector(MagazinePage.CLOSE_BANNER,state='visible',timeout=100000)
+            self.page.locator(MagazinePage.CLOSE_BANNER).click()
+        except TimeoutError:
+            pass
+
         return MagazinePage(self.page)
 
 
